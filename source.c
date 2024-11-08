@@ -44,22 +44,22 @@ void HardcodedBooks(Book* arr) {
     arr[3].rating = 2.6;
 
     arr[4].book_id = 5;
-    strcpy(arr[4].book_name, "Train");
+    strcpy(arr[4].book_name, "Train to Pakistan");
     strcpy(arr[4].author_name, "Khushwant Singh");
     strcpy(arr[4].category, "History");
     arr[4].price = 560;
     arr[4].rating = 4.5;
 
     arr[5].book_id = 6;
-    strcpy(arr[5].book_name, "Wings");
+    strcpy(arr[5].book_name, "Wings of Fire");
     strcpy(arr[5].author_name, "abdul kalam");
     strcpy(arr[5].category, "Biography");
     arr[5].price = 380;
     arr[5].rating = 3.7;
 
     arr[6].book_id = 7;
-    strcpy(arr[6].book_name, "Interpreter");
-    strcpy(arr[6].author_name, "Lahiri");
+    strcpy(arr[6].book_name, "Interpreter of Maladies");
+    strcpy(arr[6].author_name, "Jhumpa Lahiri");
     strcpy(arr[6].category, "Stories");
     arr[6].price = 780;
     arr[6].rating = 4.9;
@@ -72,7 +72,7 @@ void HardcodedBooks(Book* arr) {
     arr[7].rating = 2.2;
 
     arr[8].book_id = 9;
-    strcpy(arr[8].book_name, "Inheritance");
+    strcpy(arr[8].book_name, "The Inheritance of Loss");
     strcpy(arr[8].author_name, "Kiran Desai");
     strcpy(arr[8].category, "Culture");
     arr[8].price = 1000;
@@ -219,77 +219,66 @@ void stor(Book*arr,int size) {
 	
   void topbook(Book*arr,int size)
 	{
-	
-
+		
+		int i,j;
+		Book temp;
+		Book brr[size];
+		for(i=0;i<size;i++){
+			brr[i]=arr[i];
+			brr[i]=arr[i];
+		}
 	int choice;
-	printf("Top 3 books by price and rating (1)\nLowest 3 books by price and rating (2) = ");
+	printf("Top 3 books & Lowest 3 books by price (1)\n Top 3 books & Lowest 3 books by rating (2) = ");
 	scanf("%d",&choice);
 	if(choice==1){
-	
-    for (int i = 0; i < size; i++) {
-        for (int j = i + 1; j < size; j++) {
-            if (arr[i].price < arr[j].price) {
-                Book temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-        }
-    }
-
-    
-    printf("\nTop 3 most expensive books:\n");
-    for (int i = 0; i < 3 && i < size; i++) { 
-        display(&arr[i], 1); 
-    }
-    for (int i = 0; i < size; i++) {
-        for (int j = i + 1; j < size; j++) {
-            if (arr[i].rating < arr[j].rating) {
-                Book temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-        }
-    }
-
-    
-    printf("\nTop 3 book on rating:\n");
-    for (int i = 0; i < 3 && i < size; i++) { 
-        display(&arr[i], 1); 
-    }
+		for(i=0;i<size;i++){
+	  	 for(j=i+1;j<size;j++){
+	  	 	if(brr[i].price<brr[j].price){
+	  	 	 temp=brr[i];
+	  	 		 brr[i]= brr[j];
+                brr[j] = temp;
+			   }
+	}
+	  	
 }
-  else if(choice==2){
-  	 for (int i = 0; i < size; i++) {
-        for (int j = i + 1; j < size; j++) {
-            if (arr[i].price > arr[j].price) {
-                Book temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-        }
+  printf("\nTop 3 most expensive books:\n");
+    for (int i = 0;i<3 && i<size;i++) { 
+        display(&brr[i],1); 
     }
-
-    
     printf("\nLowest 3 books by price :\n");
-    for (int i = 0; i < 3 && i < size; i++) { 
-        display(&arr[i], 1);
-  }
-  	 for (int i = 0; i < size; i++) {
-        for (int j = i + 1; j < size; j++) {
-            if (arr[i].rating > arr[j].rating) {
-                Book temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-            }
-        }
+     for (i=size-1;i>=size-3 && i>=0;i--) { 
+        display(&brr[i],1); 
+
+}
+}
+    
+
+  else if(choice==2){
+  	 for(i=0;i<size;i++){
+	  	 for(j=i+1;j<size;j++){
+	  	 	if(brr[i].rating<brr[j].rating){
+	  	 		temp=brr[i];
+	  	 		 brr[i]= brr[j];
+                brr[j]= temp;
+			   }
+	}
+	
+	  	
+}
+   printf("\nTop 3 book on rating:\n");
+    for (i=0;i<3 && i<size;i++) { 
+        display(&brr[i], 1); 
     }
+  
+  	 
     printf("\nLowest 3 books by rating:\n");
-    for (int i = 0; i < 3 && i < size; i++) { 
-        display(&arr[i], 1); 
+    for (i=size-1;i>=size-3 && i>=0;i--) { 
+        display(&brr[i], 1); 
     }
   
 }
 }
-
+	
   void maxbook(Book*arr,int size) 
 {
 	int a=arr[0].price;
